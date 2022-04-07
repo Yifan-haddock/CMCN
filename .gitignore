@@ -1,0 +1,9 @@
+bert/bert_pretrained/
+bert/bert_semantic_matrix/
+data/
+*.joblib
+*.bin
+*.csv 
+*.xlsx
+*.bz2
+/metamap/public_mm/
