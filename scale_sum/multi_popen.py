@@ -1,9 +1,9 @@
 import subprocess
 
-methods = ['weighted_sum','min_max','zscore','tanh']
-berts = ["sapbert", "biosyn",'biobert']
+methods = ['weighted_sum']
+berts = ["sapbert", "biosyn"]
 queries = ['realworld_query']
-ratios = [(31.91,4.51),(60.38, 4.02),(53.90, 18.52)]
+ratios = [(32.36,4.13),(60.43, 4.12)]
 for query in queries:
     print(query)
     for bert,ratio in zip(berts,ratios):

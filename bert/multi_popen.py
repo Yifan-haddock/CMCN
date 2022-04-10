@@ -1,94 +1,94 @@
 import subprocess
 
 
-berts = ['biosyn','biobert','sapbert']
-queries = ['realworld_query']
-# translates = ['baidu','youdao','tencent']
-methods = ['cos','inner']
+berts = ['sapbert']
+queries = ['disorder_query']
+translates = ['en']
+# methods = ['cos','inner']
 
-for bert in berts:
-    print(bert)
-    for query in queries:
-        print(query)
-        for method in methods:
-            print(method)
-            command = [
-                'python',
-                'compute_acc.py',
-                '-q',
-                query,
-                '-d',
-                'disorder_dictionary',
-                '--checkpoint',
-                bert,
-                '--load_pretrained',
-                'False',
-                '--method',
-                method
-            ]
-            subprocess.call(command)
-
-for query in queries:
-    print(query)
-    for method in methods:
-        print(method,'multilingual')
-        command = [
-            'python',
-            'compute_acc_cn.py',
-            '-q',
-            query,
-            '-d',
-            'disorder_dictionary',
-            '--checkpoint',
-            'multilingual',
-            '--load_pretrained',
-            'False',
-            '--method',
-            method
-        ]
-        subprocess.call(command)
-
-# for query in queries:
-#     print(query)
-#     for bert in berts:
-#         print(bert)
-#         for translate in translates:
-#             print(translate)
+# for bert in berts:
+#     print(bert)
+#     for query in queries:
+#         print(query)
+#         for method in methods:
+#             print(method)
 #             command = [
 #                 'python',
-#                 'get_query_embedding.py',
+#                 'compute_acc.py',
 #                 '-q',
 #                 query,
-#                 '--checkpoint', 
+#                 '-d',
+#                 'disorder_dictionary',
+#                 '--checkpoint',
 #                 bert,
 #                 '--load_pretrained',
 #                 'False',
-#                 '-t', 
-#                 translate,
-#                 '--cuda', 
-#                 'True'
+#                 '--method',
+#                 method
 #             ]
 #             subprocess.call(command)
 
 # for query in queries:
 #     print(query)
-#     for translate in translates:
-#         print(translate)
+#     for method in methods:
+#         print(method,'multilingual')
 #         command = [
 #             'python',
-#             'get_query_embedding.py',
+#             'compute_acc_cn.py',
 #             '-q',
 #             query,
-#             '--checkpoint', 
-#             'biosyn',
+#             '-d',
+#             'disorder_dictionary',
+#             '--checkpoint',
+#             'multilingual',
 #             '--load_pretrained',
-#             'bert_pretrained/biosyn/t3epoch105_global_pretrained_bio_bert_pretrained.bin',
-#             '-t', 
-#             translate,
-#             '--cuda', 
-#             'True'
+#             'False',
+#             '--method',
+#             method
 #         ]
 #         subprocess.call(command)
+
+for query in queries:
+    print(query)
+    for bert in berts:
+        print(bert)
+        for translate in translates:
+            print(translate)
+            command = [
+                'python',
+                'get_query_embedding.py',
+                '-q',
+                query,
+                '--checkpoint', 
+                bert,
+                '--load_pretrained',
+                'False',
+                '-t', 
+                translate,
+                '--cuda', 
+                'True'
+            ]
+            subprocess.call(command)
+
+for query in queries:
+    print(query)
+    for translate in translates:
+        print(translate)
+        command = [
+            'python',
+            'get_query_embedding.py',
+            '-q',
+            query,
+            '--checkpoint', 
+            'biosyn',
+            '--load_pretrained',
+            'bert_pretrained/biosyn/t3epoch105_global_pretrained_bio_bert_pretrained.bin',
+            '-t', 
+            translate,
+            '--cuda', 
+            'True'
+        ]
+        subprocess.call(command)
 
 # for translate in translates:
 #     print(translate,'multilingual')

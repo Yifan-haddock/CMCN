@@ -38,9 +38,14 @@ python compute_acc_small.py \
 ``` 
 
 ## ratio searching results
-realworld icd10 chpo sapbert
+realworld icd10 chpo 0.3 sapbert
 28.56, 4.78
-realworld icd10 chpo biosyn
+realworld icd10 chpo 0.3 biosyn
 53.48 4.68
-realworld icd10 chpo biobert
+realworld icd10 chpo 0.3 biobert
 53.90 18.52
+
+icd10 chpo sapbert
+32.36 4.13
+icd10 chpo biosyn
+60.43 4.12
