@@ -60,6 +60,8 @@ class Scaler():
             sumed = self.min_max(x) + self.min_max(y)
         elif scaler == 'weighted_sum':
             sumed = x + ratio*y
+        elif scaler == 'only_dense':
+            sumed = x
         else:
             sumed = x+y
         return sumed

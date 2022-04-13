@@ -3,7 +3,7 @@ import subprocess
 
 berts = ['sapbert']
 queries = ['disorder_query']
-translates = ['en']
+translates = ['baidu']
 # methods = ['cos','inner']
 
 # for bert in berts:

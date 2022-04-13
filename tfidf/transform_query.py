@@ -13,7 +13,8 @@ args = parser.parse_args()
 query_path = f'../data/query/{args.query}.csv'
 
 tfidf = SparseEncoder(args.ngram, args.dictionary, load_pretrained=True)
-translates = ['baidu','tencent','youdao','en']
+# translates = ['baidu','tencent','youdao','en']
+translates = ['baidu']
 for translate in translates:
     corpus = list(pd.read_csv(query_path)[translate].values.astype('U'))
     csr_matrix = tfidf.transform(corpus)

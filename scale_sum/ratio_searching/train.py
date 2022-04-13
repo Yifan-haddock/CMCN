@@ -7,30 +7,30 @@ from tqdm import tqdm
 from torch.utils.data import TensorDataset, DataLoader
 from sklearn.model_selection import train_test_split
 
-with open('biosyn_chpo_query_disorder_dictionary_train_sample.joblib','rb') as f:
+with open('sapbert_disorder_query_disorder_dictionary_train_sample.joblib','rb') as f:
     dataset = joblib.load(f)
 
-sparse_score = torch.tensor(dataset['tfidf_scores'])
-dense_score = torch.tensor(dataset['bert_scores'])
-labels = torch.tensor(dataset['labels'])
+sparse_score = torch.tensor(dataset['tfidf_scores'])[:10000,:]
+dense_score = torch.tensor(dataset['bert_scores'])[:10000,:]
+labels = torch.tensor(dataset['labels'])[:10000,:]
 
-with open('biosyn_icd10_query_disorder_dictionary_train_sample.joblib','rb') as f:
-    dataset2 = joblib.load(f)
+# with open('sapbert_icd10_query_disorder_dictionary_train_sample.joblib','rb') as f:
+#     dataset2 = joblib.load(f)
 
-sparse_score2 = torch.tensor(dataset2['tfidf_scores'])
-dense_score2 = torch.tensor(dataset2['bert_scores'])
-labels2 = torch.tensor(dataset2['labels'])
+# sparse_score2 = torch.tensor(dataset2['tfidf_scores'])
+# dense_score2 = torch.tensor(dataset2['bert_scores'])
+# labels2 = torch.tensor(dataset2['labels'])
 
-# with open('biosyn_realworld_query_disorder_dictionary_train_sample.joblib','rb') as f:
+# with open('sapbert_realworld_query_disorder_dictionary_train_sample.joblib','rb') as f:
 #     dataset3 = joblib.load(f)
 
 # sparse_score3 = torch.tensor(dataset3['tfidf_scores'])
 # dense_score3 = torch.tensor(dataset3['bert_scores'])
 # labels3 = torch.tensor(dataset3['labels'])
 
-sparse_score = torch.cat([sparse_score,sparse_score2],dim = 0)
-dense_score = torch.cat([dense_score,dense_score2],dim = 0)
-labels = torch.cat([labels,labels2],dim = 0)
+# sparse_score = torch.cat([sparse_score,sparse_score2],dim = 0)
+# dense_score = torch.cat([dense_score,dense_score2],dim = 0)
+# labels = torch.cat([labels,labels2],dim = 0)
 
 tensordataset = TensorDataset(dense_score,sparse_score,labels)
 # train_tensordataset,test_tensordataset = train_test_split(tensordataset,test_size=0.7,shuffle=True)
@@ -38,7 +38,7 @@ train_tensordataset = tensordataset
 
 dataloader = DataLoader(train_tensordataset, batch_size=64, shuffle= True)
 
-model = em_model(sparse_weight = 0.0, learning_rate=0.01)
+model = em_model(dense_weight = 1.0, learning_rate=0.01)
 
 def train(dataloader, model):
     train_loss = 0

@@ -1,9 +1,9 @@
 import subprocess
 
 
-berts = ['biobert']
-queries = ['chpo_query','icd10_query']
-methods = ['min_max']
+berts = ['biosyn','sapbert']
+queries = ['disorder_query','chpo_query','icd10_query']
+methods = ['only_dense']
 
 for bert in berts:
     print(bert)

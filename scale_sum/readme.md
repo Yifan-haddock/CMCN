@@ -49,3 +49,8 @@ icd10 chpo sapbert
 32.36 4.13
 icd10 chpo biosyn
 60.43 4.12
+
+disorder sapbert
+33.11 7.28
+disorder biosyn
+75.19 6.32

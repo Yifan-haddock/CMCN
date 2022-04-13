@@ -9,7 +9,12 @@ class em_model():
         self.sparse_weight = torch.tensor([sparse_weight], requires_grad=True)
         self.dense_weight = torch.tensor([dense_weight], requires_grad=True)
         self.learning_rate = learning_rate
-        self.optimizer = optim.Adam([self.dense_weight, self.sparse_weight], lr= self.learning_rate)
+        self.optimizer = optim.Adam(
+            [
+                {'params' : self.dense_weight, 'lr': self.learning_rate}, 
+                {'params' : self.sparse_weight, 'lr': self.learning_rate},
+            ]
+            )
 
     def forward(self, x):
         dense_scores , sparse_scores = x

@@ -3,7 +3,7 @@ use for nerual network learning alpha ratio.
 
 ```bash
 python dataset.py \
-    -q icd10_query \
+    -q disorder_query \
     -d disorder_dictionary \
     --checkpoint sapbert \
     --method min_max

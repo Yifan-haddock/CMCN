@@ -23,7 +23,7 @@ python fit_transform.py \
 ### transform_query (only for special use)
 ```bash
 python transform_query.py \
-        -q realworld_query \
+        -q disorder_query \
         --ngram ngram13 \
         -d disorder_dictionary
 ```
