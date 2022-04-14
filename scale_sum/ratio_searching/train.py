@@ -7,12 +7,12 @@ from tqdm import tqdm
 from torch.utils.data import TensorDataset, DataLoader
 from sklearn.model_selection import train_test_split
 
-with open('sapbert_disorder_query_disorder_dictionary_train_sample.joblib','rb') as f:
+with open('biosyn_disorder_query_disorder_dictionary_train_sample.joblib','rb') as f:
     dataset = joblib.load(f)
 
-sparse_score = torch.tensor(dataset['tfidf_scores'])[:10000,:]
-dense_score = torch.tensor(dataset['bert_scores'])[:10000,:]
-labels = torch.tensor(dataset['labels'])[:10000,:]
+sparse_score = torch.tensor(dataset['tfidf_scores'])[20000:30000,:]
+dense_score = torch.tensor(dataset['bert_scores'])[20000:30000,:]
+labels = torch.tensor(dataset['labels'])[20000:30000,:]
 
 # with open('sapbert_icd10_query_disorder_dictionary_train_sample.joblib','rb') as f:
 #     dataset2 = joblib.load(f)
