@@ -8,3 +8,11 @@ python dataset.py \
     --checkpoint sapbert \
     --method min_max
 ```
+
+```bash
+python train.py \
+    -n 100 \
+    --pretrained biosyn \
+    --epoch 10001 \
+    --times 9
+```

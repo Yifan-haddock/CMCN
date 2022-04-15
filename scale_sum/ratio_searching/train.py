@@ -6,31 +6,27 @@ import torch.nn.functional as F
 from tqdm import tqdm
 from torch.utils.data import TensorDataset, DataLoader
 from sklearn.model_selection import train_test_split
+import argparse
 
-with open('biosyn_disorder_query_disorder_dictionary_train_sample.joblib','rb') as f:
+parser = argparse.ArgumentParser()
+parser.add_argument('-n','--nsamples',default=100,type=int,required=True)
+parser.add_argument('--pretrained')
+parser.add_argument('--epoch',default=501,type=int,required=True)
+parser.add_argument('--times')
+args = parser.parse_args()
+
+with open(f'{args.pretrained}_disorder_query_disorder_dictionary_train_sample.joblib','rb') as f:
     dataset = joblib.load(f)
 
-sparse_score = torch.tensor(dataset['tfidf_scores'])[20000:30000,:]
-dense_score = torch.tensor(dataset['bert_scores'])[20000:30000,:]
-labels = torch.tensor(dataset['labels'])[20000:30000,:]
+sparse_score = torch.tensor(dataset['tfidf_scores'])
+dense_score = torch.tensor(dataset['bert_scores'])
+labels = torch.tensor(dataset['labels'])
 
-# with open('sapbert_icd10_query_disorder_dictionary_train_sample.joblib','rb') as f:
-#     dataset2 = joblib.load(f)
+def random_select_dataset(sparse_score, dense_score, labels, n =100):
+    random_index = torch.randint(len(sparse_score),(n,))
+    return sparse_score[random_index], dense_score[random_index], labels[random_index]
 
-# sparse_score2 = torch.tensor(dataset2['tfidf_scores'])
-# dense_score2 = torch.tensor(dataset2['bert_scores'])
-# labels2 = torch.tensor(dataset2['labels'])
-
-# with open('sapbert_realworld_query_disorder_dictionary_train_sample.joblib','rb') as f:
-#     dataset3 = joblib.load(f)
-
-# sparse_score3 = torch.tensor(dataset3['tfidf_scores'])
-# dense_score3 = torch.tensor(dataset3['bert_scores'])
-# labels3 = torch.tensor(dataset3['labels'])
-
-# sparse_score = torch.cat([sparse_score,sparse_score2],dim = 0)
-# dense_score = torch.cat([dense_score,dense_score2],dim = 0)
-# labels = torch.cat([labels,labels2],dim = 0)
+sparse_score, dense_score, labels = random_select_dataset(sparse_score, dense_score, labels, n =args.nsamples)
 
 tensordataset = TensorDataset(dense_score,sparse_score,labels)
 # train_tensordataset,test_tensordataset = train_test_split(tensordataset,test_size=0.7,shuffle=True)
@@ -58,13 +54,13 @@ def train(dataloader, model):
     return train_loss
 
 
-for epoch in range(1,501):
+for epoch in range(1,args.epoch):
     trainloss = train(dataloader, model)
     if epoch % 5 == 0:
         print('Epoch %d, Loss %f' % (epoch, float(trainloss)))
-        print(model.__param__())
+        print(model.__param__()[0]/model.__param__()[1])
 
 sparse_weight_trained = model.__param__()
-print(sparse_weight_trained)
-with open('sapbert_sparse_weight.bin', 'wb') as f:
+print(sparse_weight_trained[0]/sparse_weight_trained[1])
+with open(f'weight_training/{args.pretrained}_n{str(args.nsamples)}_times{args.times}_sparse_weight.bin', 'wb') as f:
     joblib.dump(sparse_weight_trained, f)
