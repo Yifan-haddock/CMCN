@@ -11,8 +11,8 @@ python dataset.py \
 
 ```bash
 python train.py \
-    -n 100 \
+    -n 10000 \
     --pretrained biosyn \
-    --epoch 10001 \
+    --epoch 501 \
     --times 9
 ```

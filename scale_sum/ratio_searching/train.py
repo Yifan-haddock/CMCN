@@ -62,5 +62,5 @@ for epoch in range(1,args.epoch):
 
 sparse_weight_trained = model.__param__()
 print(sparse_weight_trained[0]/sparse_weight_trained[1])
-with open(f'weight_training/{args.pretrained}_n{str(args.nsamples)}_times{args.times}_sparse_weight.bin', 'wb') as f:
-    joblib.dump(sparse_weight_trained, f)
+# with open(f'weight_training/{args.pretrained}_n{str(args.nsamples)}_times{args.times}_sparse_weight.bin', 'wb') as f:
+#     joblib.dump(sparse_weight_trained, f)
