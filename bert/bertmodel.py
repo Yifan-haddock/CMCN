@@ -19,6 +19,12 @@ class BertModel(nn.Module):
             self.model = AutoModel.from_pretrained(r"/Share/home/qiyifan/filebase/source/biobert-base-cased-v1.1")
         elif checkpoint == 'coder':
             self.model = AutoModel.from_pretrained(r"GanjinZero/UMLSBert_ALL")
+        elif checkpoint == 'bert':
+            self.model = AutoModel.from_pretrained(r'/Share/home/qiyifan/filebase/source/bert-base-uncase')
+        elif checkpoint == 'roberta':
+            self.model = AutoModel.from_pretrained(r'/Share/home/qiyifan/filebase/source/xlm-roberta-base')
+        elif checkpoint == 'umlsbert':
+            self.model = AutoModel.from_pretrained(r'/Share/home/qiyifan/filebase/source/umlsbert')
 
         if literal_eval(use_cuda):
             self.use_cuda = True

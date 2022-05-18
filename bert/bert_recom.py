@@ -1,5 +1,9 @@
-from bertmodel import BertModel
-from tokenizer import Tokenizer
+import os
+import sys
+SCRIPT = os.path.dirname(os.path.abspath('bert_recom'))
+sys.path.append(os.path.dirname(SCRIPT))
+from bert.bertmodel import BertModel
+from bert.tokenizer import Tokenizer
 import torch
 from torch import nn
 import torch.nn.functional as F
@@ -62,13 +66,13 @@ class Bert_Re():
         scores = normalize(input_a,axis=1).dot(normalize(input_b,axis=1).transpose())
         return scores
 
-    def index_argsort(self, matrix, topk=10):   
+    def index_argsort(self, matrix, topk=500):   
         index = np.argsort(matrix)[:,-topk:]
         reverse_index = np.array([i[::-1] for i in index],dtype= np.int32)
         return reverse_index
 
     def batch_argsort(self, scores):
-        batch_size=1024
+        batch_size=64
         iterations = range(0, scores.shape[0],batch_size)
         matrix_batches = [scores[start:min(start+batch_size,scores.shape[0])] for start in iterations]
         candidates_index = Parallel(n_jobs=-1)(delayed(self.index_argsort)(i) for i in matrix_batches)

@@ -14,6 +14,13 @@ class Tokenizer():
             self.tokenizer = AutoTokenizer.from_pretrained(r'/Share/home/qiyifan/filebase/source/biobert-base-cased-v1.1')
         elif checkpoint == 'coder':
             self.tokenizer = AutoTokenizer.from_pretrained(r"GanjinZero/UMLSBert_ALL")
+        elif checkpoint == 'bert':
+            self.tokenizer = AutoTokenizer.from_pretrained(r'/Share/home/qiyifan/filebase/source/bert-base-uncase')
+        elif checkpoint == 'roberta':
+            self.tokenizer = AutoTokenizer.from_pretrained(r'/Share/home/qiyifan/filebase/source/xlm-roberta-base')
+        elif checkpoint == 'umlsbert':
+            self.tokenizer = AutoTokenizer.from_pretrained(r'/Share/home/qiyifan/filebase/source/umlsbert')
+
     def tokenize(self, batch):
         tokens = self.tokenizer.batch_encode_plus(batch,
                                             max_length=42,

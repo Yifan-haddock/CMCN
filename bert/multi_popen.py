@@ -1,9 +1,10 @@
 import subprocess
 
 
-berts = ['sapbert']
-queries = ['disorder_query']
-translates = ['baidu']
+berts = ['sapbert','biobert','bert']
+queries = ['chpo_query','icd10_query','realworld_query']
+# dictionaries = ['disorder_dictionary']
+translates = ['baidu','youdao','tencent']
 # methods = ['cos','inner']
 
 # for bert in berts:
@@ -70,40 +71,21 @@ for query in queries:
             ]
             subprocess.call(command)
 
-for query in queries:
-    print(query)
-    for translate in translates:
-        print(translate)
-        command = [
-            'python',
-            'get_query_embedding.py',
-            '-q',
-            query,
-            '--checkpoint', 
-            'biosyn',
-            '--load_pretrained',
-            'bert_pretrained/biosyn/t3epoch105_global_pretrained_bio_bert_pretrained.bin',
-            '-t', 
-            translate,
-            '--cuda', 
-            'True'
-        ]
-        subprocess.call(command)
-
-# for translate in translates:
-#     print(translate,'multilingual')
-#     command = [
+# for dictionary in dictionaries:
+#     print(dictionary)
+#     for bert in berts:
+#         print(bert)
+#         command = [
 #             'python',
-#             'get_query_embedding.py',
-#             '-q',
-#             "realworld_query",
+#             'get_dictionary_embedding.py',
+#             '-d',
+#             dictionary,
 #             '--checkpoint', 
-#             'multilingual',
+#             bert,
 #             '--load_pretrained',
 #             'False',
-#             '-t', 
-#             translate,
 #             '--cuda', 
 #             'True'
 #         ]
-#     subprocess.call(command)
+#         subprocess.call(command)
+

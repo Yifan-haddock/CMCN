@@ -85,4 +85,4 @@ acc_dict = {
     'acc@10':[a[2] for a in accs]
 }
 acc_table = pd.DataFrame.from_dict(acc_dict)
-acc_table.to_csv(f'{args.checkpoint}_{args.method}_{args.query}_{args.dictionary}_acctable.csv',index=False)
+acc_table.to_csv(f'{args.checkpoint}_{args.method}_{args.query}_{args.dictionary}_uncased_acctable.csv',index=False)
