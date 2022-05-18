@@ -8,3 +8,5 @@ data/
 *.bz2
 /metamap/public_mm/
 /inference/*.json
+/tfidf/pretrained/
+tfidf/dictmatrix/
