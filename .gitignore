@@ -7,3 +7,4 @@ data/
 *.xlsx
 *.bz2
 /metamap/public_mm/
+/inference/*.json
