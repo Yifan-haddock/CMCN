@@ -65,13 +65,13 @@ acc_multi = bert_recommend.accuracy(labels_multi)
 accs.append(acc_multi)
 
 ## testifying
-with open(f'candidates_cui_{args.checkpoint}_{args.method}_{args.query}_{args.dictionary}.joblib','wb') as f:
-    joblib.dump(
-        {
-            "labels" : labels_multi,
-            'candidates' : candidates_cui_multi
-        },f
-    )
+# with open(f'candidates_cui_{args.checkpoint}_{args.method}_{args.query}_{args.dictionary}.joblib','wb') as f:
+#     joblib.dump(
+#         {
+#             "labels" : labels_multi,
+#             'candidates' : candidates_cui_multi
+#         },f
+#     )
 
 method = []
 for translate in translates:
