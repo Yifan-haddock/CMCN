@@ -16,7 +16,7 @@ args = parser.parse_args()
 bert_recommend = Bert_Re(use_cuda=args.cuda, load_pretrained=args.load_pretrained, checkpoint = args.checkpoint)
 
 path = f'../data/dictionary/{args.dictionary}.csv'
-dictionary = list(pd.read_csv(path)['terms'])
+dictionary = [str(i) for i in pd.read_csv(path)['terms']]
 dictionary_token = bert_recommend.tokenize(dictionary)
 dictionary_semantic_embedding = bert_recommend.embed_dense(dictionary_token)
 

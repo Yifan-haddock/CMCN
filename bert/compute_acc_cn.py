@@ -4,6 +4,7 @@ import argparse
 import joblib
 from bert_recom import Bert_Re
 import time
+import os
 
 
 parser = argparse.ArgumentParser()
@@ -12,6 +13,7 @@ parser.add_argument('-d','--dictionary')
 parser.add_argument('--checkpoint')
 parser.add_argument('--load_pretrained')
 parser.add_argument('--method')
+parser.add_argument('--out_dir')
 
 args = parser.parse_args()
 
@@ -61,4 +63,6 @@ acc_dict = {
     'acc@10':[a[2] for a in accs]
 }
 acc_table = pd.DataFrame.from_dict(acc_dict)
-acc_table.to_csv(f'{args.checkpoint}_{args.method}_cn_{args.query}_{args.dictionary}_acctable.csv',index=False)
+if not os.path.exists(args.out_dir):
+    os.makedirs(args.out_dir)
+acc_table.to_csv(f'{args.out_dir}/{args.checkpoint}_{args.method}_cn_{args.query}_{args.dictionary}_acctable.csv',index=False)

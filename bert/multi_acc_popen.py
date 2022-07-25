@@ -1,12 +1,11 @@
 import subprocess
 
 
-berts = ['biobert','bert','sapbert']
+berts = ['bertse']
 queries = ['chpo_query','icd10_query','realworld_query']
 dictionaries = ['disorder_dictionary']
-translates = ['baidu','youdao','tencent']
 methods = ['cos']
-
+outdir = '../../marginalbert_umls/evaluate'
 for bert in berts:
     print(bert)
     for query in queries:
@@ -25,14 +24,16 @@ for bert in berts:
                 '--load_pretrained',
                 'False',
                 '--method',
-                method
+                method,
+                '--out_dir',
+                outdir
             ]
             subprocess.call(command)
 
 # for query in queries:
 #     print(query)
 #     for method in methods:
-#         print(method,'multilingual')
+#         print(method,'bertse')
 #         command = [
 #             'python',
 #             'compute_acc_cn.py',
@@ -41,11 +42,13 @@ for bert in berts:
 #             '-d',
 #             'disorder_dictionary',
 #             '--checkpoint',
-#             'roberta',
+#             'bertse',
 #             '--load_pretrained',
 #             'False',
 #             '--method',
-#             method
+#             method,
+#             '--out_dir',
+#             outdir
 #         ]
 #         subprocess.call(command)
 

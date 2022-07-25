@@ -18,13 +18,17 @@ class BertModel(nn.Module):
         elif checkpoint == 'biosyn':
             self.model = AutoModel.from_pretrained(r"/Share/home/qiyifan/filebase/source/biobert-base-cased-v1.1")
         elif checkpoint == 'coder':
-            self.model = AutoModel.from_pretrained(r"GanjinZero/UMLSBert_ALL")
+            self.model = AutoModel.from_pretrained(r"/Share/home/qiyifan/filebase/source/coder_all")
         elif checkpoint == 'bert':
             self.model = AutoModel.from_pretrained(r'/Share/home/qiyifan/filebase/source/bert-base-uncase')
         elif checkpoint == 'roberta':
             self.model = AutoModel.from_pretrained(r'/Share/home/qiyifan/filebase/source/xlm-roberta-base')
         elif checkpoint == 'umlsbert':
             self.model = AutoModel.from_pretrained(r'/Share/home/qiyifan/filebase/source/umlsbert')
+        elif checkpoint == 'xlmsapbert':
+            self.model = AutoModel.from_pretrained(r'/Share/home/qiyifan/filebase/source/xlm-umlsboost-sapbert')
+        elif checkpoint == 'bertse':
+            self.model = AutoModel.from_pretrained(r'/Share/home/qiyifan/filebase/projects/normalization/marginalbert_umls/tmp/checkpoint_2')
 
         if literal_eval(use_cuda):
             self.use_cuda = True
