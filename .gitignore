@@ -10,3 +10,6 @@ data/
 /inference/*.json
 /tfidf/pretrained/
 tfidf/dictmatrix/
+/example/
+*.ipynb
+/inference/
