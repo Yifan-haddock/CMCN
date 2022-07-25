@@ -12,4 +12,5 @@ data/
 tfidf/dictmatrix/
 /example/
 *.ipynb
+*.json
 /inference/
