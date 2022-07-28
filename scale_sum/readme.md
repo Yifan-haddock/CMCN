@@ -37,7 +37,7 @@ python compute_acc_small.py \
         --ratio 0.1
 ``` 
 
-## ratio searching results
+<!-- ## ratio searching results
 realworld icd10 chpo 0.3 sapbert
 28.56, 4.78
 realworld icd10 chpo 0.3 biosyn
@@ -53,4 +53,4 @@ icd10 chpo biosyn
 disorder sapbert
 33.11 7.28
 disorder biosyn
-75.19 6.32
+75.19 6.32 -->
