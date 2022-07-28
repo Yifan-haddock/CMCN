@@ -6,6 +6,7 @@ data/
 *.csv 
 *.xlsx
 *.bz2
+*__pycache__
 /metamap/public_mm/
 /inference/*.json
 /tfidf/pretrained/

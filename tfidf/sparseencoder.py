@@ -1,24 +1,7 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-"""
-Enter description of this module
-
-__Author__ = snakesgun
-__Version__ = 1.0
-__Maintainer__ = snakesgun
-__Email__ = snakesgun@gmail.com
-__Status__ = Dev
-__Date__ = 2021-08-16
-"""
-
-# %% import area
 import numpy as np
 import joblib
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-
-# %%
 class SparseEncoder(object):
     def __init__(self, ngram, pretrained_dictionary, load_pretrained = False):
         self.ngram = ngram
