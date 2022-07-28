@@ -14,3 +14,6 @@ tfidf/dictmatrix/
 *.ipynb
 *.json
 /inference/
+*popen.py
+/elasticsearch/
+/metamap/
