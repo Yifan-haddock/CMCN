@@ -15,5 +15,6 @@ tfidf/dictmatrix/
 *.json
 /inference/
 *popen.py
+*multi_*.py
 /elasticsearch/
 /metamap/
